@@ -10,6 +10,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+
 import static org.mockito.Mockito.when;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -71,6 +73,23 @@ class JokesControllerTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("Category cannot be null."));
+    }
+
+    @Test
+    void getJokes_whenJokesExist_returnsJokes() throws Exception {
+        // Setup
+        Joke expectedJoke = new Joke(3L, JokeCategory.TECHNOLOGY, "Yo computer is so old it is old.");
+        ArrayList<Joke> expectedJokesList = new ArrayList<>();
+        expectedJokesList.add(expectedJoke);
+        when(jokesService.getAllJokes()).thenReturn(expectedJokesList);
+
+        // Exercise and Assert
+        mockMvc.perform(get("/api/jokes").accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(expectedJokesList.size())))
+                .andExpect(jsonPath("$[0].description").value(expectedJoke.getDescription()))
+                .andExpect(jsonPath("$[0].category").value(expectedJoke.getCategory().name()));
     }
 }
 
