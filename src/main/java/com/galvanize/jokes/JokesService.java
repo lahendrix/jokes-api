@@ -12,7 +12,7 @@ class JokesService {
     }
 
     Joke createJoke(Joke joke) {
-        return joke;
+        return jokesRepository.save(joke);
     }
 
 }
