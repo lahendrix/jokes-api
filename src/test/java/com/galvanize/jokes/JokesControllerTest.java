@@ -42,6 +42,21 @@ class JokesControllerTest {
                 .andExpect(jsonPath("$.description").value(expectedJoke.getDescription()))
                 .andExpect(jsonPath("$.category").value(expectedJoke.getCategory().name()));
     }
+
+    @Test
+    void createJoke_whenNoDescriptionExists_returns400() throws Exception {
+        // Setup
+        Joke noDescriptionJoke = new Joke();
+        noDescriptionJoke.setCategory(JokeCategory.KIDJOKES);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(noDescriptionJoke);
+
+        // Exercise & Assert
+        mockMvc.perform(post("/api/jokes").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Description cannot be null."));
+    }
 }
 
 
