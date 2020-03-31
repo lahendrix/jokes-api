@@ -17,7 +17,10 @@ class JokesController {
     }
 
     @PostMapping
-    ResponseEntity<Joke> createJoke(Joke joke) {
+    ResponseEntity<Object> createJoke(Joke joke) {
+        if(joke.getDescription() == null) {
+            return ResponseEntity.badRequest().body("Description cannot be null.");
+        }
         return ResponseEntity.ok(jokesService.createJoke(joke));
     }
 }
