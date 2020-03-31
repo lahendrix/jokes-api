@@ -17,7 +17,7 @@ class JokesController {
     }
 
     @PostMapping
-    ResponseEntity<Object> createJoke(Joke joke) {
+    ResponseEntity<Object> createJoke(@RequestBody Joke joke) {
         if(joke.getCategory() == null) {
             return ResponseEntity.badRequest().body("Category cannot be null.");
         }
