@@ -36,6 +36,9 @@ class JokesServiceTest {
         assertNotNull(savedJoke.getId());
         assertEquals(expectedJoke.getCategory(), savedJoke.getCategory());
         assertEquals(expectedJoke.getDescription(), savedJoke.getDescription());
+
+        // Teardown
+        jokesRepository.deleteAll();
     }
 
     @Test
