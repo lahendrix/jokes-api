@@ -16,6 +16,11 @@ class Joke {
     @Column
     String description;
 
+    public Joke(JokeCategory category, String description) {
+        this.category = category;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
