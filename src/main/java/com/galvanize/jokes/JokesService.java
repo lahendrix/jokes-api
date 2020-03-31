@@ -19,7 +19,7 @@ class JokesService {
     }
 
     List<Joke> getAllJokes() {
-        return new ArrayList<>();
+        return jokesRepository.findAll();
     }
 
 }
