@@ -91,6 +91,21 @@ class JokesControllerTest {
                 .andExpect(jsonPath("$[0].description").value(expectedJoke.getDescription()))
                 .andExpect(jsonPath("$[0].category").value(expectedJoke.getCategory().name()));
     }
+
+    @Test
+    void getJokesById_whenJokeExists_returnsJoke() {
+        // Setup
+        Joke expectedJoke = new Joke(3L, JokeCategory.TECHNOLOGY, "Yo computer is so old it is old.");
+        when(jokesService.getJokeById(3L)).thenReturn(expectedJoke);
+
+        // Exercise and Assert
+        mockMvc.perform(get("/api/jokes/3").accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(3L))
+                .andExpect(jsonPath("$[0].description").value(expectedJoke.getDescription()))
+                .andExpect(jsonPath("$[0].category").value(expectedJoke.getCategory().name()));
+    }
 }
 
 
