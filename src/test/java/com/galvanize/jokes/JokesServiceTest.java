@@ -58,5 +58,22 @@ class JokesServiceTest {
         // Teardown
         jokesRepository.deleteAll();
     }
+
+    @Test
+    void getJokeById_whenJokeExists_returnJoke() {
+        // Setup
+        Joke expectedJoke = new Joke(JokeCategory.KNOCKKNOCK, "A bad joke");
+        jokesRepository.save(expectedJoke);
+
+        // Exercise
+        Joke actual = jokesService.getJokeById(expectedJoke.getId());
+
+        // Assert
+        assertEquals(expectedJoke.getCategory(), actual.getCategory());
+        assertEquals(expectedJoke.getDescription(), actual.getDescription());
+
+        // Teardown
+        jokesRepository.deleteAll();
+    }
 }
 
