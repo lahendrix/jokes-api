@@ -106,6 +106,18 @@ class JokesControllerTest {
                 .andExpect(jsonPath("$.description").value(expectedJoke.getDescription()))
                 .andExpect(jsonPath("$.category").value(expectedJoke.getCategory().name()));
     }
+
+    @Test
+    void deleteJokeById_whenJokeExists_deletesJoke() throws Exception {
+        // Setup
+        when(jokesService.deleteJokeById(ArgumentMatchers.any(Long.class))).thenReturn(true);
+
+        // Exercise and Assert
+        mockMvc.perform(delete("/api/jokes/3").accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").doesNotExist());
+    }
 }
 
 
