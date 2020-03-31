@@ -30,6 +30,6 @@ class JokesController {
 
     @GetMapping
     ResponseEntity<List<Joke>> getJokes() {
-        return ResponseEntity.ok(new ArrayList<>());
+        return ResponseEntity.ok(jokesService.getAllJokes());
     }
 }
