@@ -17,6 +17,6 @@ class JokesController {
 
     @PostMapping
     ResponseEntity<Joke> createJoke(Joke joke) {
-        return ResponseEntity.ok(joke);
+        return ResponseEntity.ok(jokesService.createJoke(joke));
     }
 }
