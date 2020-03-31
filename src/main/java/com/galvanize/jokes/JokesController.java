@@ -38,4 +38,14 @@ class JokesController {
     ResponseEntity<Joke> getJokeById(@PathVariable Long id) {
         return ResponseEntity.ok(jokesService.getJokeById(id));
     }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Object> deleteJokeById(@PathVariable Long id) {
+        boolean successfulDeletion = jokesService.deleteJokeById(id);
+        if(successfulDeletion) {
+            return ResponseEntity.ok(null);
+        } else {
+            return ResponseEntity.badRequest().body("Joke with id" + id + " was not found.");
+        }
+    }
 }
