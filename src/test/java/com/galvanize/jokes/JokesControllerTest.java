@@ -57,6 +57,21 @@ class JokesControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("Description cannot be null."));
     }
+
+    @Test
+    void createJoke_whenNoCategoryExists_returns400() throws Exception {
+        // Setup
+        Joke noCategoryJoke = new Joke();
+        noCategoryJoke.setDescription("Some really funny joke");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(noCategoryJoke);
+
+        // Exercise & Assert
+        mockMvc.perform(post("/api/jokes").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Category cannot be null."));
+    }
 }
 
 
