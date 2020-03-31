@@ -2,6 +2,9 @@ package com.galvanize.jokes;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 class JokesService {
 
@@ -13,6 +16,10 @@ class JokesService {
 
     Joke createJoke(Joke joke) {
         return jokesRepository.save(joke);
+    }
+
+    List<Joke> getAllJokes() {
+        return new ArrayList<>();
     }
 
 }
