@@ -27,7 +27,7 @@ class JokesServiceTest {
         Joke expectedJoke = new Joke(JokeCategory.DADJOKES, "Yo dad so small, everybody thinks he's small.");
 
         // Exercise
-        Joke savedJoke = jokesService.createjoke(expectedJoke);
+        Joke savedJoke = jokesService.createJoke(expectedJoke);
 
         // Assert
         assertNotNull(savedJoke.getId());

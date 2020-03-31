@@ -10,4 +10,9 @@ class JokesService {
     public JokesService(JokesRepository repository) {
         this.jokesRepository = repository;
     }
+
+    Joke createJoke(Joke joke) {
+        return joke;
+    }
+
 }
