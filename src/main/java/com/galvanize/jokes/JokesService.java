@@ -28,4 +28,13 @@ class JokesService {
         return optionalJoke.orElse(null);
     }
 
+    boolean deleteJokeById(Long id) {
+        try {
+            jokesRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
