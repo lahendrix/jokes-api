@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 class JokesService {
@@ -20,6 +21,11 @@ class JokesService {
 
     List<Joke> getAllJokes() {
         return jokesRepository.findAll();
+    }
+
+    Joke getJokeById(Long id) {
+        Optional<Joke> optionalJoke = jokesRepository.findById(id);
+        return optionalJoke.orElse(null);
     }
 
 }
