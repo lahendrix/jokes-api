@@ -3,6 +3,7 @@ package com.galvanize.jokes;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +32,10 @@ class JokesController {
     @GetMapping
     ResponseEntity<List<Joke>> getJokes() {
         return ResponseEntity.ok(jokesService.getAllJokes());
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<Joke> getJokeById(@PathVariable Long id) {
+        return ResponseEntity.ok(jokesService.getJokeById(id));
     }
 }
