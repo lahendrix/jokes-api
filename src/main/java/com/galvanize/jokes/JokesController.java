@@ -1,10 +1,10 @@
 package com.galvanize.jokes;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/jokes")
@@ -26,5 +26,10 @@ class JokesController {
             return ResponseEntity.badRequest().body("Description cannot be null.");
         }
         return ResponseEntity.ok(jokesService.createJoke(joke));
+    }
+
+    @GetMapping
+    ResponseEntity<List<Joke>> getJokes() {
+        return ResponseEntity.ok(new ArrayList<>());
     }
 }
