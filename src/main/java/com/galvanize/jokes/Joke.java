@@ -21,6 +21,12 @@ class Joke {
         this.description = description;
     }
 
+    public Joke(Long id, JokeCategory category, String description) {
+        this.id = id;
+        this.category = category;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
