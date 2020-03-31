@@ -16,6 +16,8 @@ class Joke {
     @Column
     String description;
 
+    public Joke () {}
+
     public Joke(JokeCategory category, String description) {
         this.category = category;
         this.description = description;

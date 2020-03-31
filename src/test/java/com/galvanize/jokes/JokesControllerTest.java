@@ -40,6 +40,7 @@ class JokesControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(notNullValue()))
                 .andExpect(jsonPath("$.description").value(expectedJoke.getDescription()))
-                .andExpect(jsonPath("$.category").value(expectedJoke.getCategory().name()))
+                .andExpect(jsonPath("$.category").value(expectedJoke.getCategory().name()));
     }
 }
+
